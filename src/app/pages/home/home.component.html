@@ -1,7 +1,16 @@
 <div class="container">
   <h1 class="jumbotron" style="text-align: center;background-color: crimson;color: white">Angular Bootstrap Example</h1>
-  <app-post
-  *ngFor="let post of posts"
-  [post]="post"
-  ></app-post>
+  <app-page
+    *ngFor="let page of pages"
+    [page]="page"
+    [show]="pagesIndex[pages.indexOf(page) + 1]"
+  >
+  </app-page>
+  <ul class="pagination">
+    <li
+      *ngFor="let page of pages"
+    >
+      <a class="page-link" (click)="createPaginationIndex(pages.indexOf(page) + 1)">{{pages.indexOf(page) + 1}}</a>
+    </li>
+  </ul>
 </div>

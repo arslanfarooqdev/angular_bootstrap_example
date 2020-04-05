@@ -11,9 +11,32 @@ export class PostComponent implements OnInit {
 
   @Input() post: Post;
 
+  buttonText = 'show';
+  show = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  setClasses(){
+
+    const classes = {
+      'card-text': true,
+      collapse: true,
+      show: this.show
+    };
+    return classes;
+  }
+
+  toggleShow(){
+
+    if (this.show){
+      this.show = false;
+      this.buttonText = 'Show';
+    } else {
+      this.show = true;
+      this.buttonText = 'Hide';
+    }
+  }
 }

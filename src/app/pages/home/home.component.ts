@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   /* Defining posts array to display in the UI */
   posts: Post[];
   pages: Post[][];
-
+  pagesIndex: boolean[] = [];
   constructor(private postsService: PostsService) { }
 
   ngOnInit(): void {
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
         this.posts = posts;
         /* Creating Pages */
         this.pages = this.createPages(posts, 10);
-        console.log(this.pages);
+        this.createPaginationIndex(1);
       }
     );
     }
@@ -38,6 +38,18 @@ export class HomeComponent implements OnInit {
         arrayOfPages.push(loadedPosts.slice(i, i + size));
       }
       return arrayOfPages;
+    }
+
+    /* Creating Index of pages to show and hide with pagination */
+    createPaginationIndex(selectedPage){
+      this.pagesIndex = [];
+      for (let i = 0; i <= this.pages.length; i++) {
+        if (i === selectedPage){
+          this.pagesIndex.push(true);
+        } else {
+          this.pagesIndex.push(false);
+        }
+      }
     }
 
 }
